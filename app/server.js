@@ -44,7 +44,7 @@ url:"https://github.com/ZahraSdt7",
 },
 servers:[
     {
-        url:"http://localhost:5500"
+        url:"http://localhost:3000"
     }
 ],
 components:{
@@ -101,8 +101,11 @@ const ServerError = createHttpError.InternalServerError();
 const StatusCode = error.status || ServerError.status;
 const message = error.message || ServerError.message;
 return res.status(StatusCode).json({
-    StatusCode,
+    errors:{
+        StatusCode,
     message
+    }
+    
 })    
 })
 }
