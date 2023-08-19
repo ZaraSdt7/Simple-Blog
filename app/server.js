@@ -6,7 +6,6 @@ require("dotenv").config();
 const swaggerUI = require("swagger-ui-express");
 const swaggerjsDoc = require("swagger-jsdoc");
 const Cors = require("cors");
-const { error } = require("console");
 const { AllRouter } = require("./router/router");
 const createHttpError = require("http-errors");
 
@@ -19,8 +18,8 @@ this.#DB_URL=DB_URL;
 this.#PORT=PORT;
 this.ConfigApplication();
 this.InitRedis();
-this.ConnetMongodb();
-this.CreateServer();
+this.ConnetMongodb(DB_URL);
+this.CreateServer(PORT);
 this.CreateRouter();
 this.ErrorHandeling()
 }
@@ -63,18 +62,19 @@ apis:["./app/router/**/*.js"]
 {explorer:true}
 ))   
 }    
-CreateServer(){
+CreateServer(PORT){
 const http = require("http");
 http.createServer(this.#app).listen(this.#PORT,()=>{
 console.log("Run => http://localhost:" + this.#PORT);    
 })    
 }
-ConnetMongodb(){
-mongoose.set('strictQuery',true);
-mongoose.connect(this.#DB_URL,(error)=>{
-if(!error) return console.log("Connect To DB");
-return console.log("Connect Failed To DB ");    
-})    
+ConnetMongodb(DB_URL){
+    main().catch(err => console.log(err));
+    async function main() {
+        await mongoose.connect(DB_URL)
+            .then(() => console.log('Connected to MongoDB.'))
+            .catch(err => console.error('Could not Connected to MongoDB.', err));
+    }
 mongoose.connection.on("Connected",()=>{
  console.log("mongoose connected to db");   
 })
