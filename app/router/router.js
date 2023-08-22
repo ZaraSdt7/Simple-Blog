@@ -10,8 +10,8 @@ const value = await RedisClient.get("key");
 console.log(value);    
 })();
 
-router.use("/",HomeRouter);
 router.use("/user",UserAuthRouter);
+router.use("/",HomeRouter);
 module.exports ={
     AllRouter:router
 }

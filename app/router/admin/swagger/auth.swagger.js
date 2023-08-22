@@ -3,29 +3,29 @@
  *  components:
  *      schemas:
  *          UserRegister:
- *                     type: object
- *                     required:
- *                         -   user_name
- *                         -   mobile        
- *                     peroperties:
- *                          user_name:       
- *                                type: string
- *                                description: user_name register
- *                          mobile:
- *                                type: string
- *                                description: mobile register
- *          UserLogin:
- *                  type: object
- *                  required:
- *                      -   mobile
- *                      -   code
- *                  peroperties:
- *                       mobile:
- *                           type: string
- *                           description: user login with mobile
- *                       code:
- *                           type: integer
- *                           description: enter code login   
+ *              type: object
+ *              required:
+ *                  -   mobile
+ *                  -   user_name
+ *              properties:
+ *                  mobile:
+ *                      type: string
+ *                      description: the user mobile for signup/signin
+ *                  user_name:
+ *                      type: string
+ *                      description: the user mobile for signup/signin
+  *          UserLogin:
+ *              type: object
+ *              required:
+ *                  -   mobile
+ *                  -   code
+ *              properties:
+ *                  mobile:
+ *                      type: string
+ *                      description: the user mobile for signup/signin
+ *                  code:
+ *                      type: integer
+ *                      description: reviced code from getOTP 
  */
 
 /**

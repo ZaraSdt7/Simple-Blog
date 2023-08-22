@@ -1,5 +1,5 @@
 function PhoneGenerator(){
-return Math.floor((Math.random()*90000)+10000)    
+return Math.floor(Math.random()*90000+10000)    
 }
 module.exports={
     PhoneGenerator

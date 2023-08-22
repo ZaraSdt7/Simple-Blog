@@ -1,0 +1,8 @@
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+    "mobile":"09355502268",
+    "user_name":"zizon"
+
+}
