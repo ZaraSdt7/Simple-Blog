@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const RedisClient = require("../utils/init-redis");
 const { UserAuthRouter } = require("./User/auth.router");
-const AdminRouter = require("./admin/AdminRouter");
+const {AdminRouters} = require("./admin/AdminRouter");
 const { HomeRouter } = require("./api/api.index");
 
 (async()=>{
@@ -11,6 +11,7 @@ console.log(value);
 })();
 
 router.use("/user",UserAuthRouter);
+router.use("/admin",AdminRouters)
 router.use("/",HomeRouter);
 module.exports ={
     AllRouter:router

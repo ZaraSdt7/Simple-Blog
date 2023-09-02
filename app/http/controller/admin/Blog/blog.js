@@ -8,7 +8,7 @@ const blog = require("../../../model/blog");
 const createHttpError = require("http-errors");
 const { required } = require("joi");
 
-class BlogControllet extends Controller{
+class BlogController extends Controller{
 async CreateBlog(req,res,next){
 try {
 const Blogschemas = await BlogSchema.validateAsync(req.body);
@@ -109,11 +109,13 @@ if(req?.body?.fileUploadPath && req?.body?.filename){
 }     
 const data = req.body;
 let NullData = [null,undefined,""," ",0,"0"];
-Object.keys(data).forEach(key=>{{
+let Blacklist = ["_id"]
+Object.keys(data).forEach(key=>{
 if(NullData.includes(key)) delete data[key]
 if(typeof data[key] == "string") data[key] = data[key].trim();
 if(Array.isArray(data[key]) && data[key].length >0) data[key]= data[key].map(item=>item.trim()) 
-}})
+if(Blacklist.includes(key)) delete data[key]
+})
 const updateblog = await BlogModel.updateOne({_id:id},{$set:data})
 if (updateblog.modifiedCount == 0) throw createHttpError.InternalServerError("Update blog failed")
 return res.status(httpStatus.OK).json({
@@ -135,5 +137,5 @@ return findid
 }
 }
 module.exports={
-    BlogControllet:new BlogControllet()
+    BlogController:new BlogController()
 }

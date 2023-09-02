@@ -1,7 +1,7 @@
 const { BlogRouter } = require("./blog");
 
 const router = require("express").Router();
-router.use("/blog",BlogRouter)
+router.use("/blogs",BlogRouter)
 module.exports={
     AdminRouters:router
 }
