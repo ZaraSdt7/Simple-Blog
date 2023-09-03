@@ -25,7 +25,7 @@ if(file.originalname){
 const ext = path.extname(file.originalname);
 const FileName = String(new Date().getTime() + ext) 
 req.body.filename = FileName
-return cb(null,true)   
+return cb(null,FileName)   
 }
 cb(null,null)
 }    

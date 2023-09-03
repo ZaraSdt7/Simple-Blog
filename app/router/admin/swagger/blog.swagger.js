@@ -6,6 +6,7 @@
  *              type: object
  *              required:
  *                  -   title
+ *                  -  author
  *                  -   text
  *                  -   category
  *                  -   image
@@ -13,15 +14,12 @@
  *                  title:
  *                      type: string
  *                      description: the title of category
- *                  short_text:
+ *                  author:
  *                      type: string
- *                      description: the summary of text of blog
+ *                      description: the name author
  *                  text:
  *                      type: string
  *                      description: the text of blog
- *                  tags:
- *                      type: string
- *                      description: the list of tags for example(tag1#tag2#tag_foo)
  *                  category:
  *                      type: string
  *                      description: the id of category for foreinField in blog

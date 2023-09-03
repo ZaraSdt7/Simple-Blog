@@ -14,9 +14,8 @@ try {
 const Blogschemas = await BlogSchema.validateAsync(req.body);
 req.body.image = path.join(Blogschemas.fileUploadPath,Blogschemas.filename)
 req.body.image = req.body.image.replace(/\\/g,"/") 
-const {title,text,category}= Blogschemas;
+const {title,text,category,author}= Blogschemas;
 const image = req.body.image
-const author = user._id;
 const CreateBlog = await BlogModel.create({title,text,author,category,image})
 return res.status(httpStatus.CREATED).json({
 statusCode:httpStatus.CREATED,
@@ -33,29 +32,7 @@ data:{
 
 async GetListOfBlog(req,res,next){
 try {
-const blog = await BlogModel.aggregate([
-  {
-    $match: {}
-  },
-  {
-    $lookup:{
-      from:"user",
-      foreignField:"_id",
-      localField:"autor",
-      as:"author"
-    }
-  },
-  {
-    $unwind:"auhor"
-  },
-  {
-    $project:{
-      "autor.__v":0,
-      "author.opt":0
-    }
-  }
-
-])    
+const blog =await BlogModel.find({})
 return res.status(httpStatus.OK).json({
 statusCode:httpStatus.OK,
 data:{
